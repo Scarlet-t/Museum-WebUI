@@ -14,6 +14,9 @@ export default function Home() {
 
     <Layout>
         <Row>
+          <h1 className="text-center">The Metropolitan Museum of Art</h1>
+        </Row>
+        <Row>
           <Image
             alt="Metropolitan_Museum_of_Art"
             src="https://upload.wikimedia.org/wikipedia/commons/3/30/Metropolitan_Museum_of_Art_%28The_Met%29_-_Central_Park%2C_NYC.jpg"

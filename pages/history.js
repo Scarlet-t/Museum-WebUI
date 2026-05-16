@@ -7,13 +7,15 @@ import { searchHistoryAtom } from "@/store";
 import styles from "@/styles/History.module.css";
 import Layout from "@/components/Layout";
 import { removeFromHistory } from "@/lib/userData";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 export default function History() {
   // routing
   const router = useRouter();
   //jotai
   const [searchHistory, setSearchHistory] = useAtom(searchHistoryAtom);
-  if(!searchHistory) return null;
+  if (!searchHistory) return null;
 
   let parsedHistory = [];
   searchHistory.forEach((search) => {
@@ -24,7 +26,7 @@ export default function History() {
 
   function historyClicked(e, index) {
     e.preventDefault();
-    router.push(`${searchHistory[index]}`);
+    router.push(`artwork?${searchHistory[index]}`);
   }
 
   async function removeHistoryClicked(e, index) {
@@ -37,28 +39,32 @@ export default function History() {
         <>
           <Card style={{ width: "100%" }}>
             <Card.Body>
-              <Card.Text>
-                Nothing Here. Try searching for some artwork.
-              </Card.Text>
+              <Card.Text>Nothing Here. Do you even art bro?</Card.Text>
             </Card.Body>
           </Card>
         </>
       );
     }
+
     let render = parsedHistory.map((historyItem, index) => {
       return (
         <>
-          <ListGroup.Item
-            className={styles.historyListItem}
-            onClick={(e) => historyClicked(e, index)}
-          >
-            {Object.keys(historyItem).map((key) => (
-              <>
-                {key}: <strong>{historyItem[key]}</strong>&nbsp;
-              </>
-            ))}
-          </ListGroup.Item>
-          <Button
+        <Row>
+          <Col>
+            <ListGroup.Item
+              className={styles.historyListItem}
+              onClick={(e) => historyClicked(e, index)}>
+              
+              {Object.keys(historyItem).map((key) => (
+                <>
+                  {key}: <strong>{historyItem[key]}</strong>&nbsp;
+                </>
+              ))}
+            </ListGroup.Item>
+          </Col>
+
+          <Col md="auto">
+            <Button
               className="float-end"
               variant="danger"
               size="sm"
@@ -66,6 +72,9 @@ export default function History() {
             >
               &times;
             </Button>
+          </Col>
+        </Row>
+        <br/>
         </>
       );
     });

@@ -31,17 +31,17 @@ export default function ArtworkCardDetail({objectID = null}) {
     }
 
     const [buttonVariant, setButtonVariant] = useState("primary");
-    const [buttonText, setButtonText] = useState("+ Favourite (added)");
+    const [buttonText, setButtonText] = useState("★ Favourited ✓");
 
     useEffect(() => {
         setShowAdded(favouritesList?.includes(objectID));
         if (showAdded) {                         
             setButtonVariant("primary");
-            setButtonText("+ Favourite (added)")
+            setButtonText("★ Favourited ✓")
         }
         else {
             setButtonVariant("outline-primary");
-            setButtonText("+ Favourite");
+            setButtonText("☆ Favourite");
         }
     },[showAdded, setButtonVariant, setButtonText, favouritesList, objectID])
 

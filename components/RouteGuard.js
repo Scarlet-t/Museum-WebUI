@@ -13,7 +13,7 @@ export default function RouteGuard(props) {
     const router = useRouter();
     const [authorised, setAuthorised] = useState(false);
     const [favourites, setFavourites] = useAtom(favouritesAtom);
-    const [searchHistory, setSearchHistory] = useAtom(favouritesAtom);
+    const [searchHistory, setSearchHistory] = useAtom(searchHistoryAtom);
 
     async function updateAtoms() {
         setFavourites(getFavourites());

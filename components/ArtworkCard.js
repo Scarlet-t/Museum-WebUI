@@ -35,7 +35,7 @@ export default function ArtworkCard({objectID = null}) {
                         Medium: {item.medium? item.medium : 'N/A'} <br/>
                     </Card.Text>
                 </Card.Body>
-                <Link href={url} passHref legacyBehavior>
+                <Link href={url} passHref>
                     <Button variant='secondary'>{objectID}</Button>
                 </Link>
                 

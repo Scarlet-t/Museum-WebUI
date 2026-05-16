@@ -101,7 +101,7 @@ export default function Artwork() {
             </>
         }
         else {
-            return <>null</>
+            return <>loading...</>
         }
     }
 

@@ -12,6 +12,10 @@ import { useAtom } from "jotai";
 import { searchHistoryAtom } from "@/store";
 import { addToHistory } from "@/lib/userData";
 import { getDecodedToken, removeToken } from "@/lib/authenticate";
+import "bootstrap-icons/font/bootstrap-icons.css";
+
+import Collapse from 'react-bootstrap/Collapse';
+
 
 export default function MainNav() {
   // atom start
@@ -60,27 +64,27 @@ export default function MainNav() {
             <Nav className="me-auto">
               {!token && (
                 <Nav.Link
-                active={router.pathname === "/login"}
-                onClick={(e) => {
-                  e.preventDefault();
-                  setIsExpanded(false);
-                  router.push("/login");
-                }}
-              >
-                Advanced Search
-              </Nav.Link>
+                  active={router.pathname === "/login"}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setIsExpanded(false);
+                    router.push("/login");
+                  }}
+                >
+                  Login
+                </Nav.Link>
               )}
               {!token && (
                 <Nav.Link
-                active={router.pathname === "/register"}
-                onClick={(e) => {
-                  e.preventDefault();
-                  setIsExpanded(false);
-                  router.push("/register");
-                }}
-              >
-                Advanced Search
-              </Nav.Link>
+                  active={router.pathname === "/register"}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setIsExpanded(false);
+                    router.push("/register");
+                  }}
+                >
+                  Register
+                </Nav.Link>
               )}
               <Nav.Link
                 active={router.pathname === "/"}
@@ -105,56 +109,52 @@ export default function MainNav() {
                 </Nav.Link>
               )}
             </Nav>
-            {token && 
-            (
+            {token && (
               <Form inline onSubmit={handleSubmit}>
-              <Row>
-                <Col>
-                  <Form.Control
-                    type="text"
-                    placeholder="Search"
-                    className=" mr-sm-2"
-                    value={searchField}
-                    onChange={(e) => setSearchField(e.target.value)}
-                  />
-                </Col>
-                <Col>
-                  <Button type="submit">Search</Button>
-                </Col>
-              </Row>
-            </Form>
-            )
-            }
-            
+                <Row>
+                  <Col>
+                    <Form.Control
+                      type="text"
+                      placeholder="Search"
+                      className="mr-sm-2"
+                      value={searchField}
+                      onChange={(e) => setSearchField(e.target.value)}
+                    />
+                  </Col>
+                  <Col>
+                    <Button type="submit">
+                      <i class="bi bi-search-heart-fill"></i>
+                    </Button>
+                  </Col>
+                </Row>
+              </Form>
+            )}
+
             <Nav>
               {token && (
                 <NavDropdown title={token.userName} id="basic-nav-dropdown">
-                <NavDropdown.Item
-                  active={router.pathname === "/favourites"}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setIsExpanded(false);
-                    router.push("/favourites");
-                  }}
-                >
-                  Favourites
-                </NavDropdown.Item>
-                <NavDropdown.Item
-                  active={router.pathname === "/history"}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setIsExpanded(false);
-                    router.push("/history");
-                  }}
-                >
-                  History
-                </NavDropdown.Item>
-                <NavDropdown.Item
-                  onClick={logout}
-                >
-                  Logout
-                </NavDropdown.Item>
-              </NavDropdown>
+                  <NavDropdown.Item
+                    active={router.pathname === "/favourites"}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setIsExpanded(false);
+                      router.push("/favourites");
+                    }}
+                  >
+                    Favourites
+                  </NavDropdown.Item>
+                  <NavDropdown.Item
+                    active={router.pathname === "/history"}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setIsExpanded(false);
+                      router.push("/history");
+                    }}
+                  >
+                    History
+                  </NavDropdown.Item>
+                  <NavDropdown.Item onClick={logout}>Logout</NavDropdown.Item>
+                </NavDropdown>
               )}
             </Nav>
           </Navbar.Collapse>
